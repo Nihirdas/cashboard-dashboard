@@ -60,6 +60,49 @@ header p {
   margin-top: 4px;
 }
 
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  padding-top: 4px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--unit);
+  color: #06120c;
+  font-weight: 650;
+  font-size: 0.9rem;
+  padding: 9px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease;
+}
+.btn:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+.btn-note {
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-align: right;
+  max-width: 230px;
+}
+.muted {
+  color: var(--muted);
+}
+
 h2 {
   font-size: 0.82rem;
   text-transform: uppercase;

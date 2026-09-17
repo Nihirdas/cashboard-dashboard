@@ -4,6 +4,9 @@ import { Pyramid } from "./components/Pyramid";
 import { Trends } from "./components/Trends";
 import { Specs } from "./components/Specs";
 import { Rationale } from "./components/Rationale";
+import { RecentRuns } from "./components/RecentRuns";
+
+const QA_RUN_URL = "https://github.com/Nihirdas/cashboard-qa/actions/workflows/tests.yml";
 
 export default function App() {
   const [history, setHistory] = useState<History | null>(null);
@@ -40,12 +43,25 @@ export default function App() {
 
   return (
     <div className="wrap">
-      <header>
-        <h1>Cashboard · Test Dashboard</h1>
-        <p>
-          Automated test health for the Cashboard finance app — unit, API and end-to-end.
-        </p>
-        <p className="updated">Updated {new Date(history.updatedAt).toLocaleString()}</p>
+      <header className="header-row">
+        <div>
+          <h1>Cashboard · Test Dashboard</h1>
+          <p>
+            Automated test health for the Cashboard finance app — unit, API and
+            end-to-end.
+          </p>
+          <p className="updated">
+            Updated {new Date(history.updatedAt).toLocaleString()}
+          </p>
+        </div>
+        <div className="header-actions">
+          <a className="btn" href={QA_RUN_URL} target="_blank" rel="noreferrer">
+            Run tests ↗
+          </a>
+          <span className="btn-note">
+            Launches on GitHub Actions; new results appear here automatically.
+          </span>
+        </div>
       </header>
 
       <div className="stat-row" style={{ marginTop: 24 }}>
@@ -85,6 +101,9 @@ export default function App() {
 
       <h2>Trends</h2>
       <Trends runs={history.runs} />
+
+      <h2>Recent runs</h2>
+      <RecentRuns runs={history.runs} />
 
       <h2>By spec</h2>
       <Specs specs={history.specs} />
