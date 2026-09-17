@@ -1,34 +1,71 @@
 import type { History, LayerKey } from "../types";
 
-const ORDER: { key: LayerKey; name: string }[] = [
-  { key: "e2e", name: "E2E" },
-  { key: "api", name: "API" },
-  { key: "unit", name: "Unit" },
-];
+interface Tier {
+  key: LayerKey;
+  name: string;
+  count: number;
+  pct: number;
+}
 
 export function Pyramid({ layers }: { layers: History["layers"] }) {
-  const max = Math.max(layers.unit.count, layers.api.count, layers.e2e.count);
   const total = layers.unit.count + layers.api.count + layers.e2e.count;
+  const pct = (n: number) => Math.round((n / total) * 100);
+
+  // Top -> bottom.
+  const tiers: Tier[] = [
+    { key: "e2e", name: "E2E", count: layers.e2e.count, pct: pct(layers.e2e.count) },
+    { key: "api", name: "API", count: layers.api.count, pct: pct(layers.api.count) },
+    { key: "unit", name: "Unit", count: layers.unit.count, pct: pct(layers.unit.count) },
+  ];
+
+  // Truncated triangle: three equal bands, linear taper from apex to base.
+  const W = 600;
+  const H = 300;
+  const cx = W / 2;
+  const apex = 110;
+  const base = 560;
+  const gap = 6;
+  const bandH = H / tiers.length;
+  const widthAt = (y: number) => apex + (base - apex) * (y / H);
 
   return (
     <div className="card">
-      <div className="pyramid">
-        {ORDER.map(({ key, name }) => {
-          const layer = layers[key];
-          const width = 42 + (layer.count / max) * 58; // 42%..100% by count
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        className="pyramid-svg"
+        role="img"
+        aria-label="Test pyramid: Unit 47, API 27, E2E 10"
+      >
+        {tiers.map((t, i) => {
+          const yTop = i * bandH + (i === 0 ? 0 : gap / 2);
+          const yBot = (i + 1) * bandH - (i === tiers.length - 1 ? 0 : gap / 2);
+          const wTop = widthAt(yTop);
+          const wBot = widthAt(yBot);
+          const points = [
+            [cx - wTop / 2, yTop],
+            [cx + wTop / 2, yTop],
+            [cx + wBot / 2, yBot],
+            [cx - wBot / 2, yBot],
+          ]
+            .map((p) => p.join(","))
+            .join(" ");
+          const cy = (yTop + yBot) / 2;
           return (
-            <div
-              key={key}
-              className={`tier ${key}`}
-              style={{ width: `${width}%` }}
-              title={`${layer.count} ${name} tests · ${layer.tool}`}
-            >
-              <span className="tier-name">{name}</span>
-              <span className="tier-count">{layer.count}</span>
-            </div>
+            <g key={t.key}>
+              <polygon points={points} className={`tri tri-${t.key}`} />
+              <text textAnchor="middle">
+                <tspan x={cx} y={cy - 6} className="tri-label">
+                  {t.name}
+                </tspan>
+                <tspan x={cx} y={cy + 18} className="tri-num">
+                  {t.count} <tspan className="tri-pct">· {t.pct}%</tspan>
+                </tspan>
+              </text>
+            </g>
           );
         })}
-      </div>
+      </svg>
       <p className="pyramid-note">
         Wide base of unit tests (Vitest), a substantial API layer (Playwright
         APIRequestContext), a thin cap of end-to-end tests (Playwright) — {total}{" "}

@@ -175,46 +175,39 @@ h2 {
 }
 
 /* Pyramid */
-.pyramid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+.pyramid-svg {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
 }
-.tier {
-  height: 62px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 18px;
-  color: #08110d;
-  font-weight: 650;
-  transition: transform 0.15s ease;
+.tri {
+  stroke: var(--bg);
+  stroke-width: 2;
 }
-.tier:hover {
-  transform: translateY(-1px);
+.tri-unit {
+  fill: var(--unit);
 }
-.tier .tier-name {
-  font-size: 0.95rem;
+.tri-api {
+  fill: var(--api);
 }
-.tier .tier-meta {
-  font-size: 0.78rem;
-  opacity: 0.85;
-  font-weight: 500;
+.tri-e2e {
+  fill: var(--e2e);
 }
-.tier .tier-count {
-  font-size: 1.5rem;
+.tri-label {
+  fill: #08110d;
+  font-size: 15px;
+  font-weight: 600;
+}
+.tri-num {
+  fill: #08110d;
+  font-size: 20px;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
-.tier.unit {
-  background: var(--unit);
-}
-.tier.api {
-  background: var(--api);
-}
-.tier.e2e {
-  background: var(--e2e);
+.tri-pct {
+  font-size: 14px;
+  font-weight: 600;
+  fill-opacity: 0.75;
 }
 .pyramid-note {
   color: var(--muted);
