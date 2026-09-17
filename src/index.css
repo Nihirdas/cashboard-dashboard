@@ -1,0 +1,278 @@
+:root {
+  --bg: #0b0b0d;
+  --surface: #141417;
+  --surface-2: #1b1b1f;
+  --line: #26262c;
+  --text: #e8e8ec;
+  --muted: #8b93a1;
+  --unit: #10b981;
+  --api: #38bdf8;
+  --e2e: #a78bfa;
+  --ok: #34d399;
+  --bad: #f87171;
+  --radius: 14px;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px 72px;
+}
+
+header h1 {
+  font-size: 1.7rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+header p {
+  color: var(--muted);
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+}
+
+.updated {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+h2 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 600;
+  margin: 40px 0 14px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.stat .label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.stat .value {
+  font-size: 1.7rem;
+  font-weight: 650;
+  margin-top: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat .sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.pill .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.pill.ok {
+  background: rgba(52, 211, 153, 0.12);
+  color: var(--ok);
+}
+.pill.ok .dot {
+  background: var(--ok);
+}
+.pill.bad {
+  background: rgba(248, 113, 113, 0.12);
+  color: var(--bad);
+}
+.pill.bad .dot {
+  background: var(--bad);
+}
+
+/* Pyramid */
+.pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.tier {
+  height: 62px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  color: #08110d;
+  font-weight: 650;
+  transition: transform 0.15s ease;
+}
+.tier:hover {
+  transform: translateY(-1px);
+}
+.tier .tier-name {
+  font-size: 0.95rem;
+}
+.tier .tier-meta {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  font-weight: 500;
+}
+.tier .tier-count {
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+.tier.unit {
+  background: var(--unit);
+}
+.tier.api {
+  background: var(--api);
+}
+.tier.e2e {
+  background: var(--e2e);
+}
+.pyramid-note {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.chart-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+th {
+  text-align: left;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  font-variant-numeric: tabular-nums;
+}
+tr:last-child td {
+  border-bottom: none;
+}
+.layer-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+.layer-tag.unit {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--unit);
+}
+.layer-tag.api {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--api);
+}
+.layer-tag.e2e {
+  background: rgba(167, 139, 250, 0.15);
+  color: var(--e2e);
+}
+
+.rationale p {
+  color: var(--text);
+  font-size: 0.92rem;
+}
+.rationale ul {
+  padding-left: 18px;
+  color: var(--text);
+  font-size: 0.92rem;
+}
+.rationale li {
+  margin: 6px 0;
+}
+.rationale .muted {
+  color: var(--muted);
+}
+
+footer {
+  margin-top: 48px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+a {
+  color: var(--api);
+}
+
+.state {
+  color: var(--muted);
+  padding: 60px 0;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .stat-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}

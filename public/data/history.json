@@ -1,0 +1,70 @@
+{
+  "updatedAt": "2026-09-17T00:36:00Z",
+  "layers": {
+    "unit": { "count": 47, "passed": 47, "tool": "Vitest", "repo": "cashboard" },
+    "api": {
+      "count": 27,
+      "passed": 27,
+      "tool": "Playwright APIRequestContext",
+      "repo": "cashboard-qa"
+    },
+    "e2e": {
+      "count": 10,
+      "passed": 10,
+      "tool": "Playwright Test",
+      "repo": "cashboard-qa"
+    }
+  },
+  "production": {
+    "lastCheck": "2026-09-17T00:35:00Z",
+    "passed": 27,
+    "total": 27,
+    "status": "ok"
+  },
+  "specs": [
+    { "spec": "projections.test.ts", "layer": "unit", "tests": 25, "passed": 25 },
+    { "spec": "finance.test.ts", "layer": "unit", "tests": 13, "passed": 13 },
+    { "spec": "format.test.ts", "layer": "unit", "tests": 9, "passed": 9 },
+    { "spec": "projections.spec.ts", "layer": "api", "tests": 15, "passed": 15 },
+    { "spec": "transactions.spec.ts", "layer": "api", "tests": 3, "passed": 3 },
+    { "spec": "summary.spec.ts", "layer": "api", "tests": 2, "passed": 2 },
+    { "spec": "accounts.spec.ts", "layer": "api", "tests": 2, "passed": 2 },
+    { "spec": "portfolio.spec.ts", "layer": "api", "tests": 2, "passed": 2 },
+    { "spec": "health.spec.ts", "layer": "api", "tests": 2, "passed": 2 },
+    { "spec": "net-worth.spec.ts", "layer": "api", "tests": 1, "passed": 1 },
+    { "spec": "navigation.spec.ts", "layer": "e2e", "tests": 6, "passed": 6 },
+    { "spec": "projections.spec.ts", "layer": "e2e", "tests": 4, "passed": 4 }
+  ],
+  "runs": [
+    {
+      "id": "local",
+      "timestamp": "2026-09-17T00:11:24Z",
+      "trigger": "local",
+      "total": 37,
+      "passed": 37,
+      "failed": 0,
+      "flaky": 0,
+      "durationMs": 1899
+    },
+    {
+      "id": "35167129454",
+      "timestamp": "2026-09-17T00:24:20Z",
+      "trigger": "push",
+      "total": 37,
+      "passed": 37,
+      "failed": 0,
+      "flaky": 0,
+      "durationMs": 2010
+    },
+    {
+      "id": "35167293697",
+      "timestamp": "2026-09-17T00:34:40Z",
+      "trigger": "workflow_dispatch",
+      "total": 37,
+      "passed": 37,
+      "failed": 0,
+      "flaky": 0,
+      "durationMs": 1980
+    }
+  ]
+}
