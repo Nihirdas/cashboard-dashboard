@@ -1,6 +1,6 @@
 import type { RunRecord } from "../types";
 
-const RUN_URL = "https://github.com/Nihirdas/cashboard-qa/actions/runs/";
+const RUN_URL = "https://github.com/Nihirdas/cashboard-dashboard/actions/runs/";
 
 const when = (iso: string) =>
   new Date(iso).toLocaleString(undefined, {

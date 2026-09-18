@@ -1,0 +1,76 @@
+name: Run tests & publish
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  run:
+    name: Run suite, publish history, deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout dashboard
+        uses: actions/checkout@v7
+      - name: Checkout app
+        uses: actions/checkout@v7
+        with:
+          repository: Nihirdas/cashboard
+          path: app
+      - name: Checkout tests
+        uses: actions/checkout@v7
+        with:
+          repository: Nihirdas/cashboard-qa
+          path: qa
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Build the app
+        working-directory: app
+        run: |
+          npm ci
+          npm run build
+      - name: Run API + E2E against the built app
+        working-directory: qa
+        env:
+          APP_DIR: ../app
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          npm test
+      - name: Update history
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" https://cashboard-pi.vercel.app/api/health)
+          export PROD_HEALTH=$([ "$code" = "200" ] && echo ok || echo down)
+          node scripts/update-history.mjs qa/test-results/results.json public/data/history.json
+      - name: Commit history
+        run: |
+          git config user.name "Nihirdas"
+          git config user.email "6910112+Nihirdas@users.noreply.github.com"
+          git add public/data/history.json
+          git commit -m "chore: update test history" || {
+            echo "no changes"
+            exit 0
+          }
+          git push
+      - name: Build dashboard
+        run: |
+          npm ci
+          npm run build
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v5

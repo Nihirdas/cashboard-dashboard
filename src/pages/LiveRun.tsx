@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import type { History, RunRecord } from "../types";
-import { QA_WORKFLOW_RUN, runUrl } from "../config";
+import { RUN_WORKFLOW, runUrl } from "../config";
 
 type Phase = "idle" | "running" | "done" | "timeout";
 
 const POLL_MS = 12_000;
-const TIMEOUT_MS = 6 * 60_000;
-const EST_MS = 4 * 60_000; // progress easing target
+const TIMEOUT_MS = 10 * 60_000;
+const EST_MS = 6 * 60_000; // progress easing target
 
 export function LiveRun({
   history,
@@ -56,7 +56,7 @@ export function LiveRun({
     setResult(null);
     setProgress(4);
     setPhase("running");
-    window.open(QA_WORKFLOW_RUN, "_blank", "noreferrer");
+    window.open(RUN_WORKFLOW, "_blank", "noreferrer");
   };
 
   const manualRuns = [...history.runs]
@@ -71,8 +71,9 @@ export function LiveRun({
           <>
             <h3 className="runbox-title">Run the full suite on demand</h3>
             <p className="muted">
-              Launches the API + E2E suite on GitHub Actions. It takes about two minutes;
-              the result lands on this page automatically once it publishes.
+              Launches the suite on GitHub Actions — it builds the app, runs the API + E2E
+              tests, and publishes the result back here. Takes a few minutes; the result
+              lands on this page automatically.
             </p>
             <button className="btn btn-lg" onClick={start}>
               ▶ Run tests now
@@ -85,9 +86,9 @@ export function LiveRun({
             <div className="spinner" />
             <h3 className="runbox-title">Running the suite…</h3>
             <p className="muted">
-              This takes about two minutes — hang tight. A GitHub Actions tab opened;
-              click <strong>Run workflow</strong> there if it didn't start on its own.
-              Results appear here automatically.
+              This takes a few minutes — hang tight. A GitHub Actions tab opened; click{" "}
+              <strong>Run workflow</strong> there if it didn't start on its own. Results
+              appear here automatically.
             </p>
             <div className="progress">
               <div className="progress-fill" style={{ width: `${progress}%` }} />
@@ -117,8 +118,8 @@ export function LiveRun({
             <h3 className="runbox-title">Still waiting…</h3>
             <p className="muted">
               No new result yet. Make sure you clicked <strong>Run workflow</strong> on
-              GitHub and that automatic publishing is enabled. You can watch the{" "}
-              <a href={QA_WORKFLOW_RUN} target="_blank" rel="noreferrer">
+              GitHub. You can watch the{" "}
+              <a href={RUN_WORKFLOW} target="_blank" rel="noreferrer">
                 run on GitHub Actions
               </a>
               .
