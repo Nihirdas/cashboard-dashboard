@@ -1,7 +1,12 @@
 {
-  "updatedAt": "2026-09-19T09:40:00Z",
+  "updatedAt": "2026-09-18T10:24:01.686Z",
   "layers": {
-    "unit": { "count": 47, "passed": 47, "tool": "Vitest", "repo": "cashboard" },
+    "unit": {
+      "count": 47,
+      "passed": 47,
+      "tool": "Vitest",
+      "repo": "cashboard"
+    },
     "api": {
       "count": 27,
       "passed": 27,
@@ -22,25 +27,90 @@
     }
   },
   "production": {
-    "lastCheck": "2026-09-17T00:35:00Z",
+    "lastCheck": "2026-09-18T10:24:01.686Z",
     "passed": 27,
     "total": 27,
     "status": "ok"
   },
   "specs": [
-    { "spec": "projections.test.ts", "layer": "unit", "tests": 25, "passed": 25 },
-    { "spec": "finance.test.ts", "layer": "unit", "tests": 13, "passed": 13 },
-    { "spec": "format.test.ts", "layer": "unit", "tests": 9, "passed": 9 },
-    { "spec": "projections.spec.ts", "layer": "api", "tests": 15, "passed": 15 },
-    { "spec": "transactions.spec.ts", "layer": "api", "tests": 3, "passed": 3 },
-    { "spec": "summary.spec.ts", "layer": "api", "tests": 2, "passed": 2 },
-    { "spec": "accounts.spec.ts", "layer": "api", "tests": 2, "passed": 2 },
-    { "spec": "portfolio.spec.ts", "layer": "api", "tests": 2, "passed": 2 },
-    { "spec": "health.spec.ts", "layer": "api", "tests": 2, "passed": 2 },
-    { "spec": "net-worth.spec.ts", "layer": "api", "tests": 1, "passed": 1 },
-    { "spec": "projections.spec.ts", "layer": "contract", "tests": 3, "passed": 3 },
-    { "spec": "navigation.spec.ts", "layer": "e2e", "tests": 6, "passed": 6 },
-    { "spec": "projections.spec.ts", "layer": "e2e", "tests": 4, "passed": 4 }
+    {
+      "spec": "projections.test.ts",
+      "layer": "unit",
+      "tests": 25,
+      "passed": 25
+    },
+    {
+      "spec": "finance.test.ts",
+      "layer": "unit",
+      "tests": 13,
+      "passed": 13
+    },
+    {
+      "spec": "format.test.ts",
+      "layer": "unit",
+      "tests": 9,
+      "passed": 9
+    },
+    {
+      "spec": "projections.spec.ts",
+      "layer": "api",
+      "tests": 15,
+      "passed": 15
+    },
+    {
+      "spec": "transactions.spec.ts",
+      "layer": "api",
+      "tests": 3,
+      "passed": 3
+    },
+    {
+      "spec": "summary.spec.ts",
+      "layer": "api",
+      "tests": 2,
+      "passed": 2
+    },
+    {
+      "spec": "accounts.spec.ts",
+      "layer": "api",
+      "tests": 2,
+      "passed": 2
+    },
+    {
+      "spec": "portfolio.spec.ts",
+      "layer": "api",
+      "tests": 2,
+      "passed": 2
+    },
+    {
+      "spec": "health.spec.ts",
+      "layer": "api",
+      "tests": 2,
+      "passed": 2
+    },
+    {
+      "spec": "net-worth.spec.ts",
+      "layer": "api",
+      "tests": 1,
+      "passed": 1
+    },
+    {
+      "spec": "projections.spec.ts",
+      "layer": "contract",
+      "tests": 3,
+      "passed": 3
+    },
+    {
+      "spec": "navigation.spec.ts",
+      "layer": "e2e",
+      "tests": 6,
+      "passed": 6
+    },
+    {
+      "spec": "projections.spec.ts",
+      "layer": "e2e",
+      "tests": 4,
+      "passed": 4
+    }
   ],
   "runs": [
     {
@@ -74,14 +144,14 @@
       "durationMs": 1980
     },
     {
-      "id": "seed-contract",
-      "timestamp": "2026-09-19T09:40:00Z",
-      "trigger": "local",
-      "total": 40,
-      "passed": 40,
+      "id": "35334340844",
+      "timestamp": "2026-09-18T10:24:01.686Z",
+      "trigger": "workflow_dispatch",
+      "total": 37,
+      "passed": 37,
       "failed": 0,
       "flaky": 0,
-      "durationMs": 3409
+      "durationMs": 6833
     }
   ]
 }
