@@ -7,6 +7,7 @@
   --muted: #8b93a1;
   --unit: #10b981;
   --api: #38bdf8;
+  --contract: #fbbf24;
   --e2e: #a78bfa;
   --ok: #34d399;
   --bad: #f87171;
@@ -190,6 +191,9 @@ h2 {
 .tri-api {
   fill: var(--api);
 }
+.tri-contract {
+  fill: var(--contract);
+}
 .tri-e2e {
   fill: var(--e2e);
 }
@@ -266,6 +270,10 @@ tr:last-child td {
 .layer-tag.api {
   background: rgba(56, 189, 248, 0.15);
   color: var(--api);
+}
+.layer-tag.contract {
+  background: rgba(251, 191, 36, 0.15);
+  color: var(--contract);
 }
 .layer-tag.e2e {
   background: rgba(167, 139, 250, 0.15);

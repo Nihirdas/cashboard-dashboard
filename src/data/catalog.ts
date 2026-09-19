@@ -1,7 +1,7 @@
 // The test-case catalog — authored from the real test titles in the suites, so
-// it reflects exactly what is automated. Grouped by layer (UI / API / Unit).
+// it reflects exactly what is automated. Grouped by layer (UI / Contract / API / Unit).
 
-export type CatalogKey = "ui" | "api" | "unit";
+export type CatalogKey = "ui" | "contract" | "api" | "unit";
 
 export interface TestEntry {
   name: string;
@@ -66,6 +66,34 @@ export const catalog: CatalogLayer[] = [
           {
             name: "renders on a mobile viewport",
             desc: "Projections renders correctly at a 375px phone width.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    key: "contract",
+    label: "Contract",
+    tool: "Playwright Test (Chromium)",
+    where: "cashboard-qa · tests/contract",
+    blurb:
+      "The wiring between the calculator UI and its API — that the on-screen assumptions reach /api/projections under the right names, and the response lands back in the right cards.",
+    groups: [
+      {
+        spec: "projections.spec.ts",
+        subject: "Projections UI ↔ API contract",
+        tests: [
+          {
+            name: "on-screen assumptions map exactly into the /api/projections request",
+            desc: "Sets the sliders, captures the fired request and asserts exactly the five params (start, monthly, return, years, startYear), each equal to the value shown on its slider — nothing renamed, dropped or added.",
+          },
+          {
+            name: "the API response summary maps back into the rendered cards",
+            desc: "The response summary lands in the right cards: total → Projected net worth, contributed → Total you put in, growth → Growth from returns.",
+          },
+          {
+            name: "changing an assumption re-fetches and re-renders the same round-trip",
+            desc: "Moving the return slider rides the new value into a fresh request and the cards follow that response — the whole round-trip re-runs.",
           },
         ],
       },

@@ -29,6 +29,7 @@ const of = (p) => tests.filter((t) => t.project === p);
 const passedOf = (arr) => arr.filter((t) => t.status === "expected").length;
 
 const api = of("api");
+const contract = of("contract");
 const e2e = of("e2e");
 const stats = results.stats ?? {};
 
@@ -43,10 +44,14 @@ const run = {
   durationMs: Math.round(stats.duration ?? 0),
 };
 
-// api and e2e are owned by this suite; unit lives with the app, so leave it.
+// api, contract and e2e are owned by this suite; unit lives with the app, so leave it.
 if (api.length) {
   history.layers.api.count = api.length;
   history.layers.api.passed = passedOf(api);
+}
+if (contract.length) {
+  history.layers.contract.count = contract.length;
+  history.layers.contract.passed = passedOf(contract);
 }
 if (e2e.length) {
   history.layers.e2e.count = e2e.length;
@@ -63,5 +68,5 @@ history.updatedAt = run.timestamp;
 
 writeFileSync(historyPath, JSON.stringify(history, null, 2) + "\n");
 console.log(
-  `history: +run ${run.id} ${run.passed}/${run.total} (api ${api.length}, e2e ${e2e.length}, ${run.durationMs}ms)`,
+  `history: +run ${run.id} ${run.passed}/${run.total} (api ${api.length}, contract ${contract.length}, e2e ${e2e.length}, ${run.durationMs}ms)`,
 );

@@ -7,7 +7,10 @@ import { RecentRuns } from "../components/RecentRuns";
 export function Dashboard({ history }: { history: History }) {
   const latest = history.runs[history.runs.length - 1];
   const total =
-    history.layers.unit.count + history.layers.api.count + history.layers.e2e.count;
+    history.layers.unit.count +
+    history.layers.api.count +
+    history.layers.contract.count +
+    history.layers.e2e.count;
   const prodOk =
     history.production.status === "ok" &&
     history.production.passed === history.production.total;
@@ -18,7 +21,7 @@ export function Dashboard({ history }: { history: History }) {
         <div className="card stat">
           <div className="label">Total tests</div>
           <div className="value">{total}</div>
-          <div className="sub">unit + API + E2E</div>
+          <div className="sub">unit + API + contract + E2E</div>
         </div>
         <div className="card stat">
           <div className="label">Latest run</div>
@@ -33,7 +36,7 @@ export function Dashboard({ history }: { history: History }) {
         <div className="card stat">
           <div className="label">Suite duration</div>
           <div className="value">{(latest.durationMs / 1000).toFixed(1)}s</div>
-          <div className="sub">API + E2E</div>
+          <div className="sub">API + contract + E2E</div>
         </div>
         <div className="card stat">
           <div className="label">Production</div>

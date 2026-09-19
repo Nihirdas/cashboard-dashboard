@@ -8,17 +8,24 @@ interface Tier {
 }
 
 export function Pyramid({ layers }: { layers: History["layers"] }) {
-  const total = layers.unit.count + layers.api.count + layers.e2e.count;
+  const total =
+    layers.unit.count + layers.api.count + layers.contract.count + layers.e2e.count;
   const pct = (n: number) => Math.round((n / total) * 100);
 
-  // Top -> bottom.
+  // Top -> bottom. Contract (the UI<->API wiring) sits just below E2E.
   const tiers: Tier[] = [
     { key: "e2e", name: "E2E", count: layers.e2e.count, pct: pct(layers.e2e.count) },
+    {
+      key: "contract",
+      name: "Contract",
+      count: layers.contract.count,
+      pct: pct(layers.contract.count),
+    },
     { key: "api", name: "API", count: layers.api.count, pct: pct(layers.api.count) },
     { key: "unit", name: "Unit", count: layers.unit.count, pct: pct(layers.unit.count) },
   ];
 
-  // Truncated triangle: three equal bands, linear taper from apex to base.
+  // Truncated triangle: four equal bands, linear taper from apex to base.
   const W = 600;
   const H = 300;
   const cx = W / 2;
@@ -35,7 +42,9 @@ export function Pyramid({ layers }: { layers: History["layers"] }) {
         width="100%"
         className="pyramid-svg"
         role="img"
-        aria-label="Test pyramid: Unit 47, API 27, E2E 10"
+        aria-label={`Test pyramid: ${tiers
+          .map((t) => `${t.name} ${t.count}`)
+          .join(", ")}`}
       >
         {tiers.map((t, i) => {
           const yTop = i * bandH + (i === 0 ? 0 : gap / 2);
@@ -68,8 +77,8 @@ export function Pyramid({ layers }: { layers: History["layers"] }) {
       </svg>
       <p className="pyramid-note">
         Wide base of unit tests (Vitest), a substantial API layer (Playwright
-        APIRequestContext), a thin cap of end-to-end tests (Playwright) — {total}{" "}
-        automated tests in all.
+        APIRequestContext), a thin contract layer checking the UI↔API wiring, and a thin
+        cap of end-to-end tests (Playwright) — {total} automated tests in all.
       </p>
     </div>
   );

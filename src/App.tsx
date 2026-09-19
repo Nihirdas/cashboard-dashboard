@@ -41,7 +41,8 @@ export default function App() {
       <header>
         <h1>Cashboard · Test Dashboard</h1>
         <p>
-          Automated test health for the Cashboard finance app — unit, API and end-to-end.
+          Automated test health for the Cashboard finance app — unit, API, contract and
+          end-to-end.
         </p>
       </header>
 

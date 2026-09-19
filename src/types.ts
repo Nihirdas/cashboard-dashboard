@@ -23,7 +23,7 @@ export interface ProductionStatus {
   status: string;
 }
 
-export type LayerKey = "unit" | "api" | "e2e";
+export type LayerKey = "unit" | "api" | "contract" | "e2e";
 
 export interface SpecStat {
   spec: string;
@@ -34,7 +34,7 @@ export interface SpecStat {
 
 export interface History {
   updatedAt: string;
-  layers: { unit: LayerStat; api: LayerStat; e2e: LayerStat };
+  layers: { unit: LayerStat; api: LayerStat; contract: LayerStat; e2e: LayerStat };
   production: ProductionStatus;
   specs: SpecStat[];
   runs: RunRecord[];

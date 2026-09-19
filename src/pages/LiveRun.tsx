@@ -71,9 +71,9 @@ export function LiveRun({
           <>
             <h3 className="runbox-title">Run the full suite on demand</h3>
             <p className="muted">
-              Launches the suite on GitHub Actions — it builds the app, runs the API + E2E
-              tests, and publishes the result back here. Takes a few minutes; the result
-              lands on this page automatically.
+              Launches the suite on GitHub Actions — it builds the app, runs the API,
+              contract and E2E tests, and publishes the result back here. Takes a few
+              minutes; the result lands on this page automatically.
             </p>
             <button className="btn btn-lg" onClick={start}>
               ▶ Run tests now

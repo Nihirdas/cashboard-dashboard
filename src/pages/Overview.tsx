@@ -3,8 +3,8 @@ import { APP_URL } from "../config";
 import { Rationale } from "../components/Rationale";
 
 export function Overview({ history }: { history: History }) {
-  const { unit, api, e2e } = history.layers;
-  const total = unit.count + api.count + e2e.count;
+  const { unit, api, contract, e2e } = history.layers;
+  const total = unit.count + api.count + contract.count + e2e.count;
 
   return (
     <>
@@ -55,6 +55,17 @@ export function Overview({ history }: { history: History }) {
             </tr>
             <tr>
               <td>
+                <span className="layer-tag contract">CONTRACT</span>
+              </td>
+              <td>
+                The UI↔API wiring — assumptions reach the API, its response fills the
+                cards
+              </td>
+              <td>Playwright</td>
+              <td style={{ textAlign: "right" }}>{contract.count}</td>
+            </tr>
+            <tr>
+              <td>
                 <span className="layer-tag e2e">UI</span>
               </td>
               <td>Key browser journeys — the calculator and navigation</td>
@@ -65,7 +76,7 @@ export function Overview({ history }: { history: History }) {
         </table>
       </div>
       <p className="muted small hint">
-        {total} automated tests across the three layers — the full case-by-case list is
+        {total} automated tests across the four layers — the full case-by-case list is
         under <a href="#/tests">Test cases</a>.
       </p>
 
