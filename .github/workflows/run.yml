@@ -42,7 +42,7 @@ jobs:
         run: |
           npm ci
           npm run build
-      - name: Run API + E2E against the built app
+      - name: Run API + contract + E2E against the built app
         working-directory: qa
         env:
           APP_DIR: ../app
